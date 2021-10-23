@@ -1,8 +1,32 @@
 .blog-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 5px;
-    margin-left: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  margin-left: 5px;
 }
-.blog-list {
+.blog-list .title {
+  font-size: 18px;
+}
+
+.user-information {
+  display: flex;
+  padding: 10px;
+}
+.user-bio {
+  display: flex;
+}
+.user-bio span {
+  margin-left: 10px;
+}
+
+.meta-data {
+  font-size: 11px;
+  font-style: italic;
+  display: flex;
+  padding: 8px;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+}
+.meta-data span:first-child {
+  padding-right: 10px;
 }
