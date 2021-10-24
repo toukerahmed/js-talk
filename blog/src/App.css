@@ -1,16 +1,36 @@
 body,
 #root {
-	margin: 0;
-	padding: 0;
-	height: 100vh;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
 }
 .container-full-width {
-	width: 100%;
-	display: flex;
+  width: 100%;
+  display: flex;
 }
 .sidebar {
-	width: 200px;
+  width: 250px;
+}
+.sidebar ul {
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+}
+.sidebar ul li {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #efefef;
+  transition: all 0.2s ease-in-out;
+}
+.sidebar ul li.selected {
+  font-weight: bold;
+  color: #e28080;
+  background: rgba(0, 0, 0, 0.05);
+}
+.sidebar ul li:hover {
+  color: #e27171;
+  background: rgba(0, 0, 0, 0.05);
 }
 .container {
-	flex: 1;
+  flex: 1;
 }
