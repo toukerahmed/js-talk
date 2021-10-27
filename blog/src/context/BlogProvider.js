@@ -1,26 +1,30 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
+import {
+  SELECTED_USER,
+  FETCHED_BLOGS,
+  FETCHED_USERS,
+  UPDATE_FETCHED,
+} from "../constant";
+import { BlogReducer, initialBlogState } from "../reducer";
+
 import { POST_API_URL, USER_API_URL } from "../constant";
 import { fetchApi } from "../actions/fetchApi";
 import BlogContext from "./BlogContext";
 
 const BlogProvider = (props) => {
-  const [blogList, setBlog] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [user, setUser] = useState(null);
-  const [fetched, setFetch] = useState(false);
+  const [state, dispatch] = useReducer(BlogReducer, initialBlogState);
+
+  const { blogList, fetched, users, user } = state;
 
   /**
    * Fetch users and blogs asyn
    */
   useEffect(() => {
     fetchApi(POST_API_URL).then((res) => {
-      setBlog(res);
+      dispatch({ type: FETCHED_BLOGS, payload: res });
     });
     fetchApi(USER_API_URL).then((res) => {
-      setTimeout(() => {
-        setUsers(res);
-      }, 1000);
+      dispatch({ type: FETCHED_USERS, payload: res });
     });
   }, []);
 
@@ -29,7 +33,7 @@ const BlogProvider = (props) => {
    */
   useEffect(() => {
     if (users.length && blogList.length && fetched === false) {
-      setFetch(true);
+      dispatch({ type: UPDATE_FETCHED, fetched: true });
     }
   }, [users, blogList, fetched]);
 
@@ -42,7 +46,7 @@ const BlogProvider = (props) => {
         const _user = users.find((u) => u.id === blog.userId);
         return { ...blog, user: _user };
       });
-      setBlog(_withUser);
+      dispatch({ type: FETCHED_BLOGS, payload: _withUser });
     }
   }, [fetched]);
 
@@ -51,7 +55,7 @@ const BlogProvider = (props) => {
    * @param {object} _user
    */
   const onSelectUser = (_user) => {
-    setUser(_user);
+    dispatch({ type: SELECTED_USER, payload: _user });
   };
 
   return (
