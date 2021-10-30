@@ -1,16 +1,12 @@
 import React, { useContext } from "react";
 import { BlogContext } from "../../context";
+import { SELECTED_USER } from "../../constant";
 
 const Sidebar = () => {
-  const {
-    users,
-    fetched,
-    selectUser,
-    user: userProps,
-  } = useContext(BlogContext);
+  const { users, fetched, user: userProps, dispatch } = useContext(BlogContext);
 
   const onSelectUser = (user) => (event) => {
-    selectUser(user);
+    dispatch({ type: SELECTED_USER, payload: user });
   };
 
   return (

@@ -6,7 +6,6 @@ import {
 } from "../constant";
 
 const BlogReducer = (state, action) => {
-  console.log("action: ", action, " state: ", state);
   switch (action.type) {
     case FETCHED_BLOGS: {
       const { payload } = action;

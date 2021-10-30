@@ -1,10 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import {
-  SELECTED_USER,
-  FETCHED_BLOGS,
-  FETCHED_USERS,
-  UPDATE_FETCHED,
-} from "../constant";
+import { FETCHED_BLOGS, FETCHED_USERS, UPDATE_FETCHED } from "../constant";
 import { BlogReducer, initialBlogState } from "../reducer";
 
 import { POST_API_URL, USER_API_URL } from "../constant";
@@ -50,14 +45,6 @@ const BlogProvider = (props) => {
     }
   }, [fetched]);
 
-  /**
-   * Select current user and set in state
-   * @param {object} _user
-   */
-  const onSelectUser = (_user) => {
-    dispatch({ type: SELECTED_USER, payload: _user });
-  };
-
   return (
     <BlogContext.Provider
       value={{
@@ -65,7 +52,7 @@ const BlogProvider = (props) => {
         users,
         fetched,
         user,
-        selectUser: onSelectUser,
+        dispatch,
       }}
     >
       {props.children}
