@@ -13,7 +13,7 @@ const Blogs = () => {
   if (!fetched) {
     return <div className="loader">loading...</div>;
   }
-
+  console.log("rendered blog");
   return (
     <div className="container">
       <UserDetails />
