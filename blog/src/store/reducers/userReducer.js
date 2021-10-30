@@ -1,16 +1,13 @@
-import {
-  SELECTED_USER,
-  FETCHED_BLOGS,
-  FETCHED_USERS,
-  UPDATE_FETCHED,
-} from "../constant";
+import { SELECTED_USER, FETCHED_USERS, UPDATE_FETCHED } from "../../constant";
 
-const BlogReducer = (state, action) => {
+const initialState = {
+  users: [],
+  user: null,
+  fetched: false,
+};
+
+const UserReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCHED_BLOGS: {
-      const { payload } = action;
-      return { ...state, blogList: payload };
-    }
     case FETCHED_USERS: {
       const { payload } = action;
       return { ...state, users: payload };
@@ -28,11 +25,4 @@ const BlogReducer = (state, action) => {
   }
 };
 
-export const initialBlogState = {
-  blogList: [],
-  users: [],
-  user: null,
-  fetched: false,
-};
-
-export default BlogReducer;
+export default UserReducer;

@@ -1,12 +1,18 @@
-import React, { useContext } from "react";
-import { BlogContext } from "../../context";
+import React from "react";
+import { useSelector } from "react-redux";
 import Item from "./item";
 import { filterBlogByUser } from "../../utils";
 import UserDetails from "./userDetails";
 import "./blog.css";
 
 const Blogs = () => {
-  const { blogs: blogList, fetched, user } = useContext(BlogContext);
+  const { fetched, user, blogList } = useSelector((store) => {
+    return {
+      user: store.userStore.user,
+      fetched: store.userStore.fetched,
+      blogList: store.blogStore.blogList,
+    };
+  });
 
   let _blogList = filterBlogByUser(user, blogList);
 

@@ -1,9 +1,21 @@
-import React, { useContext } from "react";
-import { BlogContext } from "../../context";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { SELECTED_USER } from "../../constant";
 
 const Sidebar = () => {
-  const { users, fetched, user: userProps, dispatch } = useContext(BlogContext);
+  const dispatch = useDispatch();
+
+  const {
+    users,
+    fetched,
+    user: userProps,
+  } = useSelector((store) => {
+    return {
+      users: store.userStore.users,
+      fetched: store.userStore.fetched,
+      user: store.userStore.user,
+    };
+  });
 
   const onSelectUser = (user) => (event) => {
     dispatch({ type: SELECTED_USER, payload: user });
